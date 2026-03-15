@@ -89,6 +89,12 @@ public class Datos3 {
 		return elementos.get(i).tipos().contains(s);
 	}
 	
+	// Modificacion para .lsi
+	public static Integer getPuedeUbicarseInteger(Integer i, Integer j) {
+		String s = contenedores.get(j).tipo();
+		return elementos.get(i).tipos().contains(s) ? 1 : 0;
+	}
+	
 	public static Boolean getNoPuedeUbicarse(Integer i, Integer j) {
 		return !getPuedeUbicarse(i,j);
 	}

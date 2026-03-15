@@ -48,7 +48,7 @@ public class Cromosoma1 implements BinaryData<Solucion1>{
 				cualidades.addAll(Datos1.getCualidades(i));
 			}
 		}
-		return Datos1.getNumCualidades() - cualidades.size();
+		return Math.max(0, Datos1.getNumCualidades() - cualidades.size());
 	}
 	private Integer excedePresupuesto(List<Integer> value) {
 		// TODO Auto-generated method stub

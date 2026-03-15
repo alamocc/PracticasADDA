@@ -1,0 +1,32 @@
+head section
+Integer getNumElementos()
+Integer getNumContenedores()
+Integer getTamElemento(Integer i)
+Integer getTamContenedor(Integer j)
+Integer getPuedeUbicarseInteger(Integer i, Integer j)
+
+Integer n = getNumElementos()
+Integer m = getNumContenedores()
+
+goal section
+max sum(y[j], j in 0 .. m)
+
+constraints section
+// R1: Un elemento solo puede estar en un contenedor a la vez.
+// Para cada elemento i, se puede ubicar como maximo un contenedor j. 
+// El orden de "j in 0 .. m" y "i in 0 .. n" importa.
+sum(x[i, j], j in 0 .. m) <= 1, i in 0 .. n
+
+// R2: El elemento i solo puede estar en un contenedor j si su tipo lo permite.
+x[i, j] <= getPuedeUbicarseInteger(i, j), i in 0 .. n, j in 0 .. m
+
+// R3: La suma de los elementos j no puede superar la capacidad maxima de ese contenendor.
+sum(getTamElemento(i) x[i, j], i in 0 .. n) <= getTamContenedor(j), j in 0 .. m
+
+// R4: Condicion de ocupacion total:
+sum(getTamElemento(i) x[i, j], i in 0 .. n) - getTamContenedor(j) y[j] >= 0, j in 0 .. m
+
+bin
+// Dos variables
+x[i, j], i in 0 .. n, j in 0 .. m
+y[j], j in 0 .. m
