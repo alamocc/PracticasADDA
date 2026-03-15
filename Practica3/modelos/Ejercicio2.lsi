@@ -1,0 +1,27 @@
+head section
+Integer getNumProductos()
+Double getPrecioProd(Integer i)
+Integer getUnidsSemanaProd(Integer i)
+Integer getTiempoProdTotal()
+Integer getTiempoElabTotal()
+Integer getTiempoProdProd(Integer i)
+Integer getTiempoElabProd(Integer i)
+
+Integer n = getNumProductos()
+
+goal section
+max sum(getPrecioProd(i) x[i], i in 0 .. n)
+
+constraints section
+// R2: No se puede superar el tiempo total de producción. Con la funcion getTiempoProdProd(i) nos ahorramos el doble sumatorio (da error)
+sum(getTiempoProdProd(i) x[i], i in 0 .. n) <= getTiempoProdTotal()
+
+// R3: No se puede superar el tiempo total de elaboracion manual. Con la funcion getTiempoElabProd(i) nos ahorramos el doble sumatorio (da error)
+sum(getTiempoElabProd(i) x[i], i in 0 .. n) <= getTiempoElabTotal()
+
+bounds section
+// R1: Cada producto no puede superar el nº minimo de unidades que pueden venderse semanalmente. Limite maximo para ventas por producto.
+x[i] <= getUnidsSemanaProd(i), i in 0 .. n
+
+int 
+x[i], i in 0 .. n
