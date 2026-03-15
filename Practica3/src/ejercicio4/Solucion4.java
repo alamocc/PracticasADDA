@@ -16,20 +16,35 @@ public class Solucion4 {
     private Double avgTime, avgEffort, monCons;
 
     private Solucion4(List<Integer> ls) {
-    	txt = "";
-         List<Integer> aux = List2.addLast(ls, ls.getFirst());
-        
-    	camino = aux.stream().map(i -> Datos4.getVertex(i)+"")
-        	.collect(Collectors.joining(" ->\n\t", "Recorrido:\n\t", ""));
-        	
-        totalTime = null; // TODO tiempo total empleado
-        avgTime = totalTime / Datos4.N;
-        
-        totalEffort = null; // TODO esfuerzo total empleado
-        avgEffort = totalEffort / Datos4.N;
-        
-        monCons = null; // TODO Nº de lugares con monumento consecutivos a otro con monumento
-     }
+		txt = "";
+		// aux ya incluye la vuelta al origen, ¡nos facilita la vida!
+		List<Integer> aux = List2.addLast(ls, ls.getFirst());
+		
+		camino = aux.stream().map(i -> Datos4.getVertex(i)+"")
+			.collect(Collectors.joining(" ->\n\t", "Recorrido:\n\t", ""));
+			
+		// 1. Inicializamos a 0.0
+		totalTime = 0.0; 
+		totalEffort = 0.0;
+		monCons = 0.0; 
+		
+		// 2. Calculamos recorriendo 'aux'
+		for (int i = 0; i < aux.size() - 1; i++) {
+			Integer origen = aux.get(i);
+			Integer destino = aux.get(i + 1);
+			
+			totalTime += Datos4.tiempo(origen, destino);
+			totalEffort += Datos4.esfuerzo(origen, destino);
+			
+			if (Datos4.sonMonumentos(origen, destino)) {
+				monCons += 1.0;
+			}
+		}
+		
+		// 3. Ahora las medias funcionarán perfectamente porque totalTime ya no es null
+		avgTime = totalTime / Datos4.N;
+		avgEffort = totalEffort / Datos4.N;
+	}
 
 	@Override
     public String toString() {
