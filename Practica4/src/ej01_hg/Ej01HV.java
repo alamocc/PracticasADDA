@@ -1,4 +1,4 @@
-package ej01;
+package ej01_hg;
 
 import us.lsi.hypergraphs.VirtualHyperVertex;
 

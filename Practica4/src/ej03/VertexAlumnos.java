@@ -27,6 +27,7 @@ public record VertexAlumnos(Integer index, List<Integer> restantes)
 		}
 		return h;
 	}
+	
 	@Override
 	public List<Integer> actions() {
 		List<Integer> res = List2.empty();

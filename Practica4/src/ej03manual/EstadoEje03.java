@@ -59,6 +59,13 @@ public class EstadoEje03 {
 		Integer ultimaAccion = solucion.remove(solucion.size()-1);
 		valorSolucion -= DatosAlumnos.getAfinidad(verticeActual.index(), ultimaAccion);
 	}
+	public Boolean goal() {
+		//TODO
+	}
 	
+	public Boolean goalHasSolution() {
+		return true;
+	}
+
 
 }
