@@ -149,4 +149,6 @@ public record Vertex(Integer indice, Double sueldoAcumulado, Integer valoracionA
 		}
 		return h;
 	}
+	
+	
 }
