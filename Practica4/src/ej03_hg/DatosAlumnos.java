@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import us.lsi.common.Files2;
 import us.lsi.common.List2;
 import us.lsi.common.String2;
-
+// prueba
 public class DatosAlumnos {
 	public static record Alumno(String nombre, List<Integer> afinidades) {
 		public static Alumno create(String s) {
